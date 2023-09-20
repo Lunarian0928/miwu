@@ -24,25 +24,61 @@ import jakarta.persistence.Column; // 열 지정
 public class Destination {
     // 기본키 id
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // MySQL의 AUTO_INCREMENT를 사용
+    @GeneratedValue(strategy = GenerationType.AUTO) // MySQL의 AUTO_INCREMENT를 사용
     private Long id;
 
-    // 여행지명 (not null, varchar(45))
-    @Column(name = "NAME", nullable = false, length = 45)
-    private String name;
+    // 순위
+    @Column(name = "rank_number", nullable = true, length = 100)
+    @Builder.Default
+    private String rank_number = "";
 
-    // 이미지 url (not null, varchar(2000))
-    @Column(name = "IMAGE_URL", nullable = false, length = 2000)
-    private String image_url;
+    // 광역시/도
+    @Column(name = "adress1", nullable = true, length = 45)
+    @Builder.Default
+    private String adress1 = "";
 
-    // 설명 (not null, varchar(500))
-    @Column(name = "Description", nullable = false, length = 500)
-    private String description;
+    // 시/군/구
+    @Column(name = "adress2", nullable = true, length = 45)
+    @Builder.Default
+    private String adress2 = "";
+
+    // 관광지명 (not null, varchar(45))
+    @Column(name = "dest_name", nullable = true, length = 45)
+    @Builder.Default
+    private String dest_name = "";
+
+    // 도로명주소
+    @Column(name = "road_address", nullable = true, length = 200)
+    @Builder.Default
+    private String road_adress = "";
+
+    // 중분류 카테고리
+    @Column(name = "m_category", nullable = true, length = 200)
+    @Builder.Default
+    private String m_category = "";
+
+    // 소분류 카테고리
+    @Column(name = "s_category", nullable = true, length = 200)
+    @Builder.Default
+    private String s_category = "";
+
+    // 검색건수
+    @Column(name = "search_number", nullable = true, length = 200)
+    @Builder.Default
+    private String search_number = "";
 
     // 생성자
-    public Destination(String name, String image_url, String description) {
-        this.name = name;
-        this.image_url = image_url;
-        this.description = description;
+    public Destination(String rank_number, String adress1, String adress2,
+            String dest_name, String road_adress, String m_category, String s_category, String seach_number) {
+
+        this.rank_number = rank_number;
+        this.adress1 = adress1;
+        this.adress2 = adress2;
+        this.dest_name = dest_name;
+        this.road_adress = road_adress;
+        this.m_category = m_category;
+        this.s_category = s_category;
+        this.search_number = seach_number;
+
     }
 }
